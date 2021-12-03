@@ -11,6 +11,9 @@ if (game_time < 3) {
 	draw_set_halign(fa_center);
 	var rules_text = "WRECK AS MANY CARS AS YOU CAN IN A MINUTE!";
 	draw_text_transformed(512, 100, rules_text, 2.25, 2.25, 0);
+	
+	var keys_text = "('WASD' or 'ARROWS')";
+	draw_text_transformed(512, 160, keys_text, 1.5, 1.5, 0);
 
 }
 

@@ -46,17 +46,17 @@ function Input2(dt) {
 
     var acceleration = 20;
 
-    if (keyboard_check(vk_up)) {
+    if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
         vspeed -= acceleration * dt;
     }
-    else if (keyboard_check(vk_down)) {
+    else if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
         vspeed += acceleration  * dt;
     }
 
-    if (keyboard_check(vk_right)) {
+    if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
         hspeed += acceleration  * dt;
     }
-    else if (keyboard_check(vk_left)) {
+    else if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
         hspeed -= acceleration  * dt;
     }
 
