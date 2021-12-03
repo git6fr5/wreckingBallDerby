@@ -31,3 +31,7 @@ hp_particle[2] = noone;
 
 // Type();
 Target();
+
+stuck_interval = random_range(0, 0.0001);
+prev_x = x;
+prev_y = y;

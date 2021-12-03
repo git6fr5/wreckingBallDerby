@@ -1,4 +1,50 @@
 
+function IsStuck(dt){
+	
+	stuck_ticks += dt;
+	if (stuck_ticks > stuck_interval) {	
+		
+		if (CheckStuck()) {
+			AbandonCar();
+		}
+		stuck_ticks = 0;
+		prev_x = x;
+		prev_y = y;
+
+	}
+
+}
+
+
+
+function CheckStuck() {
+	
+	var is_stuck = proximity_check(prev_x, prev_y, 30);
+
+	return is_stuck;
+	
+}
+
+function AbandonCar(){
+	SpawnPeople();
+	destroy = true;
+	hp = 1;
+	is_car_abandoned = true;
+	vspeed = 0;
+	hspeed = 0;
+}
+
+function SpawnPeople() {
+	
+	var num = random_range(1, 3);
+	for (i = 0; i < num; i +=1) {
+		
+		var person = instance_create_depth(x + random_range(-10, 10), y + random_range(-10, 10), -y, prefab_person);
+		person.box_index = random_range(0, 3);
+	}
+	
+}
+
 function AI(dt, direction_x, direction_y) {
 	
 	ticks += dt;
@@ -38,10 +84,10 @@ function AI(dt, direction_x, direction_y) {
 		
 	//}
 	
-	if (proximity_check(objCrane.x, objCrane.y + objCrane.max_length, 400)) {
+	if (proximity_check(objCrane.x, objCrane.y + objCrane.max_length, 800)) {
 		
-		local_target[0] = car.x - 100 * (objCrane.x - car.x);
-		local_target[1] = car.y - 100 * (objCrane.y + objCrane.max_length - car.y);
+		local_target[0] = car.x - 800 * (objCrane.x - car.x);
+		local_target[1] = car.y - 800 * (objCrane.y + objCrane.max_length - car.y);
 		
 	}
 	
@@ -113,7 +159,10 @@ function Bounds() {
 	vspeed = clamp(vspeed, -max_speed, max_speed);
 	hspeed = clamp(hspeed, -max_speed, max_speed);
 	
+	// var _min = destroy || is_car_abandoned ? 0 : min_speed;
 	speed = clamp(speed, min_speed, max_speed);
+	
+	
 	
 }
 
@@ -278,19 +327,20 @@ function MakeNoise(dt) {
 var dt = delta_time / 1000000;
 depth = -y;
 
-if (!destroy) {
+if (!destroy || is_car_abandoned) {
 
 	local_target = AI(dt);
 	Accelerate(dt);
 	Resistance(dt);
-
+	IsStuck(dt);
 	Collision(dt)
 	
 	// MakeNoise(dt);
 	// move_bounce_solid(true);
+	// move_bounce_all(true);
 	
 }
-else {
+else if (destroy) {
 	Destroy(dt);
 }
 
