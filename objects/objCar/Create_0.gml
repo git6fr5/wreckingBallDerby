@@ -35,3 +35,8 @@ Target();
 stuck_interval = random_range(0, 0.0001);
 prev_x = x;
 prev_y = y;
+
+
+var colours = [sprCarGreen, sprCar, sprCarGrey, sprCarBlack, sprCarBlue, sprCarRed];
+var index = random_range(0, 6);
+sprite_index = colours[index];

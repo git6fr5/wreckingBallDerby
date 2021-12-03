@@ -12,5 +12,8 @@ if (!destroy) {
 	}
 	vspeed = objWreckingBall.vspeed;
 	hspeed = objWreckingBall.hspeed;
+	
+	// objWreckingBall.people_killed += 1;
+	
 }
 

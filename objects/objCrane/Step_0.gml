@@ -23,10 +23,33 @@ function Input(dt) {
 	//x = mouse_x;
 	//y = mouse_y;
 	
+}
+
+function Input2(dt) {
 	
+	var acceleration = 20;
+
+	if (keyboard_check(vk_up)) {
+		vspeed -= acceleration * dt;
+	}
+	else if (keyboard_check(vk_down)) {
+		vspeed += acceleration  * dt;
+	}
+
+	if (keyboard_check(vk_right)) {
+		hspeed += acceleration  * dt;
+	}
+	else if (keyboard_check(vk_left)) {
+		hspeed -= acceleration  * dt;
+	}
 	
+	delta_y = vspeed;
+	delta_x = hspeed;
+	//x = mouse_x;
+	//y = mouse_y;
 	
 }
+
 
 function Reaction(dt) {
 
@@ -51,11 +74,18 @@ function Bounds(dt) {
 	x = clamp(x, objArena.min_x, objArena.max_x);
 	y = clamp(y, objArena.min_y - length, objArena.max_y - length);
 	
+	var s = 5;
+	vspeed = clamp(vspeed, -s, s);
+	hspeed = clamp(hspeed, -s, s);
+	
+	vspeed *= 0.975;
+	hspeed *= 0.975;
+	
 }
 
 var dt = delta_time / 1000000;
 
-Input(dt);
+Input2(dt);
 Reaction(dt);
 Bounds(dt);
 // Draw();

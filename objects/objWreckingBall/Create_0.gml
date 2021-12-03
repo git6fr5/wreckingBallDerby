@@ -1,0 +1,1 @@
+// people_killed = 0;

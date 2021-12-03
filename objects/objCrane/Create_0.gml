@@ -1,4 +1,4 @@
-		
+
 //shadow = instance_create_depth(x, y, -y, prefab_particle);
 //shadow.sprite_index = sprShadow;
 //shadow.destroy_on_end = false;

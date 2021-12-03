@@ -266,6 +266,13 @@ function Destroy(dt) {
 			else {
 				audio_play_sound(sndExplosion2, 1, 0);
 			}
+			
+			//var new_fire_particle = instance_create_depth(x, y, -y, prefab_particle);
+			//new_fire_particle.sprite_index = sprMassiveFire;
+			//new_fire_particle.destroy_on_end = false;
+			//new_fire_particle.animate = true;
+			//new_fire_particle.follow = noone;
+			
 			instance_destroy();
 		}
 		else {

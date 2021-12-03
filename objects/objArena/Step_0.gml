@@ -13,6 +13,14 @@ function CycleTargets(num) {
 
 function AI(dt) {
 	
+	show_debug_message(instance_number(objCar));
+	show_debug_message(instance_number(objCar));
+
+	show_debug_message(instance_number(objCar));
+	show_debug_message(instance_number(objCar));
+	show_debug_message(instance_number(objCar));
+
+	
 	ticks += dt;
 	if (ticks > think_interval) {
 		CycleTargets(number_of_targets);
