@@ -3,12 +3,12 @@ if (!destroy) {
 	
 	audio_play_sound(sndWreckingBall, 1, 0);
 	var prob = random_range(0, 2);
-			if (prob < 1) {
-				audio_play_sound(sndExplosion, 1, 0);
-			}
-			else {
-				audio_play_sound(sndExplosion2, 1, 0);
-			}
+	if (prob < 1) {
+		audio_play_sound(sndExplosion, 1, 0);
+	}
+	else {
+		audio_play_sound(sndExplosion2, 1, 0);
+	}
 	
 	destroy = true;
 	

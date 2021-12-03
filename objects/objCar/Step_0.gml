@@ -191,6 +191,19 @@ function Destroy(dt) {
 		}
 		if (hp == 0) {
 			particle_index = sprMassiveFire;
+			
+			var boom_particle = instance_create_depth(x, y - 20, -y, prefab_particle);
+			boom_particle.sprite_index = sprBoom;
+			boom_particle.destroy_on_end = true;
+			boom_particle.animate = true;
+			boom_particle.follow_offset_y = -40;
+			boom_particle.follow = self;
+			
+			audio_play_sound(sndScore, 1, 0);
+			
+			objCamController.shake = true;
+			objCamController.ticks = 0;
+			objCamController.magnitude = 10;
 		}
 		
 		for (i = 0; i < 3; i += 1) {
@@ -266,6 +279,14 @@ function Destroy(dt) {
 			else {
 				audio_play_sound(sndExplosion2, 1, 0);
 			}
+			
+			
+			//var new_fire_particle = instance_create_depth(x, y, -y, prefab_particle);
+			//new_fire_particle.sprite_index = sprMassiveFire;
+			//new_fire_particle.destroy_on_end = false;
+			//new_fire_particle.animate = true;
+			//new_fire_particle.follow = noone;
+			
 			instance_destroy();
 		}
 		else {
@@ -298,14 +319,14 @@ function MakeNoise(dt) {
 		return;
 	}
 	
-	sqr_distance = (x - objShadow.x) * (x - objShadow.x) + (y - objShadow.y) *  (y - objShadow.y);
+	var sqr_distance = (x - objShadow.x) * (x - objShadow.x) + (y - objShadow.y) *  (y - objShadow.y);
 	if (power(sqr_distance, 0.5) > 200) {
 		return;
 	}
 	
 	else {
 		
-		if (random_range(0, 0.99) < 0.01) {
+		if (random_range(0, 2.99) < 0.01) {
 			var prob = random_range(0, 3);
 			if (prob < 1) {
 				audio_play_sound(sndCar1, 0, 0);
@@ -335,7 +356,7 @@ if (!destroy || is_car_abandoned) {
 	IsStuck(dt);
 	Collision(dt)
 	
-	// MakeNoise(dt);
+	MakeNoise(dt);
 	// move_bounce_solid(true);
 	// move_bounce_all(true);
 	

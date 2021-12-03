@@ -32,21 +32,27 @@ function Frame() {
 		quadrant = 3;
 	}
 	
-	var angle = 3 * pi / 2;
-	if (adj != 0) {
-		var angle = arctan(abs(opp) / abs(adj));
-		if (quadrant == 2) {
-			angle += pi;
-		}
-		if (quadrant == 1) {
-			angle = pi - angle;
-		}
-		if (quadrant == 3) {
-			angle = 2 * pi - angle;
-		}
-	}
+	var angle = 3 * pi / 2 + pi / 4;
+    if (adj != 0) {
+        var angle = arctan(abs(opp) / abs(adj));
+        if (quadrant == 2) {
+            angle += pi;
+        }
+        if (quadrant == 1) {
+            angle = pi - angle;
+        }
+        if (quadrant == 3) {
+            angle = 2 * pi - angle;
+        }
+    }
+    else if (opp > 0) {
+        angle = pi / 2;
+    }
+    else if (opp < 0) {
+        angle = 3 * pi / 2;
+    }
 	
-	show_debug_message("QUAD: " + string(quadrant) + "OPP: " + string(opp) + ", ADJ: " + string(adj) + ", ANGLE:" + string(angle * 180 / pi))
+	// show_debug_message("QUAD: " + string(quadrant) + "OPP: " + string(opp) + ", ADJ: " + string(adj) + ", ANGLE:" + string(angle * 180 / pi))
 	var index = floor(16 - 16 * angle / (2 * pi)) - 6;
 	if (index < 0) {
 		index = 16 + index;

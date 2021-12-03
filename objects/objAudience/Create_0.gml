@@ -62,4 +62,4 @@ function SpawnPeople(num) {
 
 Bounds();
 SetTargets(number_of_targets);
-SpawnPeople(number_of_people)
+// SpawnPeople(number_of_people)
